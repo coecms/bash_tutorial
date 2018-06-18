@@ -389,6 +389,13 @@ Say we have lots of files in our directory, all ending in `.dat`, which we want 
 
 But just in case, we want to make a backup of each file first:
 
+<!-- 
+#HOLGER
+
+I think you either need to explicitly say you're using the data-shell directory, or provide a listing of the directory before operating on it.
+
+-->
+
 ```
 $ cp *.dat *.bak
 cp: target *.bak is not a directory
@@ -520,7 +527,7 @@ $ echo $?
 0
 ```
 
-Note that when we asked `ls` to list a file that didn't exist, the exit code was 2\. But immediately afterwards it was back to 0, because it was no longer the exit code of `ls` but of the last command: `echo`.
+Note that when we asked `ls` to list a file that didn't exist, the exit code was 2. But immediately afterwards it was back to 0, because it was no longer the exit code of `ls` but of the last command: `echo`.
 
 So if you need the exit code later, you need to store it in your own variable:
 
