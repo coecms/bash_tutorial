@@ -260,7 +260,7 @@ $ echo $FOO
 BARBAR
 ```
 
-We can also only return parts of a variable. `${VARNAME:n:l}` omits the first `n` characters, then prints the next `l`:
+We can also only return parts of a variable. `${VARNAME:n:l}` omits the first `n` characters, then prints the next `l` characters:
 
 ```
 $ echo $NAMES
@@ -276,10 +276,8 @@ $ echo ${NAMES#* }
 Zoe Wash Jayne Kaylee
 ```
 
-This removed the shortest match of
-
-<any number="" of="" random="" chars=""> followed by a space.
-In other words, the first name.</any>
+This removed the shortest match of any number of random chars followed by a space.
+In other words, the first name.
 
 Note that this does not change the contents of `NAMES` at all, it just only prints part of it.
 
@@ -303,7 +301,7 @@ Malcom
 
 ### Exercise:
 
-What does the term `${#VARNAME}` do?
+What happens if you add a hash (`#`) to the beginning of a variable?
 
 ```
 $ FOO=BAR
