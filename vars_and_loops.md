@@ -1,6 +1,6 @@
 # Vars and loops
 
-Before this lesson, we mainly used the shell did to call other programs with specific parameters, and used pipes, which are practically identical between shells, to glue different commands together. There are shells other than `bash`, but so far those would have done the exact same thing.
+Before this lesson, we mainly used the shell to call other programs with specific parameters, and used pipes, which are practically identical between shells, to glue different commands together. There are shells other than `bash`, but so far those would have done the exact same thing.
 
 But with variables, this is no longer the case. So before we start, I need you to run this command:
 
@@ -18,7 +18,7 @@ $ bash
 
 ## Greet me
 
-For starters, we want the computer to greet me. We can do something like this:
+For starters, we want the computer to greet us. We can do something like this:
 
 ```
 $ echo Hello Derrial
@@ -63,10 +63,10 @@ But the username isn't really what we want. We want the real name, so we try to 
 
 ```
 $ $NAME=Derrial
-=Holger: command not found
+=Derrial: command not found
 ```
 
-This didn't work either, because `bash` has replaced `$NAME` with its contents (and before it is set, the contents are empty), and then tried to interpret the resulting command `=Holger`, which of course failed.
+This didn't work either, because `bash` has replaced `$NAME` with its contents (and before it is set, the contents are empty), and then tried to interpret the resulting command `=Derrial`, which of course failed.
 
 When **assigning** a variable, we must **not** use the dollar sign:
 
@@ -90,7 +90,7 @@ $ echo 'Hello $NAME'
 
 ## How to assign values to variables
 
-When assigning values to variables, it is important to not use spaces outside of qutations:
+When assigning values to variables, it is important to not use spaces outside of quotations:
 
 ```
 $ NAME = Kylee
@@ -151,7 +151,7 @@ $ finger $USER | head -1 | tr -s '\t' ' ' | cut -d ' ' -f 4-
 Inara Serra
 ```
 
-This is a callback to last week's pipes: The output of `finger` is piped into `head -1` to get only the first line, that is piped into `tr -s '\t' ' '` to convert the tabs into spaces and condense successive spaces into a single space. And finally `cut -d ' ' -f 4-` is used to split the line into space deliited fields and only get the fields starting from 4th.
+This is a callback to last week's pipes: The output of `finger` is piped into `head -1` to get only the first line, that is piped into `tr -s '\t' ' '` to convert the tabs into spaces and condense successive spaces into a single space. And finally `cut -d ' ' -f 4-` is used to split the line into space delimited fields and only get the fields starting from 4th.
 
 To get this output into a variable, the whole line is surrouned by either `$( )` or ``:
 
@@ -164,8 +164,7 @@ $ NAME=`finger $USER | head -1 | tr -s '\t' ' ' | cut -d ' ' -f 4-`
 
 Because it's easy to assess, we use a child `bash` environment as a child process, but any program started by the shell is a child process.
 
-So we've set a variable, then start a child process:
-
+So we've set a variable, then start a child process (in this example the prompt has been altered to show it is a child process. Your prompt will not look the same if you replicate the commands below):
 ```
 $ NAME="Hoban \"Wash\" Washburne"
 $ bash
@@ -199,7 +198,17 @@ River Tam
 $ echo $NAME
 ```
 
-(This is why the earlier assignments `NAME= Kaylee` and `NAME=Kaylee Frye` failed.)
+This is why the earlier assignments `NAME= Kaylee` and `NAME=Kaylee Frye` failed. 
+
+The bash shell needs to be able to support setting a variable for a process, so for
+```
+NAME= Kaylee
+```
+`bash` interprets this as setting the variable `NAME` to an empty value and run the program `Kaylee` and for 
+```
+NAME=Kaylee Frye
+```
+`bash` interprets this as setting the variable `NAME` to `Kaylee` and run the program `Frye`. 
 
 ## Modifying variables
 
