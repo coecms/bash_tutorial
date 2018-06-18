@@ -93,11 +93,11 @@ $ echo 'Hello $NAME'
 When assigning values to variables, it is important to not use spaces outside of quotations:
 
 ```
-$ NAME = Kylee
+$ NAME = Kaylee
 NAME: command not found
-$ NAME= Kylee
-Holger: command not found
-$ NAME=Kylee Frye
+$ NAME= Kaylee
+Kaylee: command not found
+$ NAME=Kaylee Frye
 Frye: command not found
 ```
 
@@ -108,7 +108,7 @@ If the content of the variable should contain spaces, the whole content must be 
 ```
 $ NAME="Kaylee Frye"
 $ echo $NAME
-Kylee Frye
+Kaylee Frye
 ```
 
 The command `unset` deletes a variable:
@@ -198,17 +198,17 @@ River Tam
 $ echo $NAME
 ```
 
-This is why the earlier assignments `NAME= Kaylee` and `NAME=Kaylee Frye` failed. 
+This is why the earlier assignments `NAME= Kaylee` and `NAME=Kaylee Frye` failed.
 
 The bash shell needs to be able to support setting a variable for a process, so for
 ```
 NAME= Kaylee
 ```
-`bash` interprets this as setting the variable `NAME` to an empty value and run the program `Kaylee` and for 
+`bash` interprets this as setting the variable `NAME` to an empty value and run the program `Kaylee` and for
 ```
 NAME=Kaylee Frye
 ```
-`bash` interprets this as setting the variable `NAME` to `Kaylee` and run the program `Frye`. 
+`bash` interprets this as setting the variable `NAME` to `Kaylee` and run the program `Frye`.
 
 ## Modifying variables
 
@@ -389,7 +389,7 @@ Say we have lots of files in our directory, all ending in `.dat`, which we want 
 
 But just in case, we want to make a backup of each file first:
 
-<!-- 
+<!--
 #HOLGER
 
 I think you either need to explicitly say you're using the data-shell directory, or provide a listing of the directory before operating on it.
