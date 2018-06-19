@@ -94,7 +94,7 @@ This is not expected. `FILE` isn't set, so why does it suggest a file with no na
 
 Because `FILE` isn't set, this reverts to `[ -f ]` which in this case returns exit code 0.
 
-To warn against that, it's good practise to put variables in double-quotes:
+To protect against that, it's good practise to put variables in double-quotes:
 
 ```
 $ [ -f "$FILE" ] && echo "Yummy!"
@@ -103,12 +103,16 @@ $ [ -f "$FILE" ] && echo "Yummy!"
 But why the whole thing with square brackets? Because if. If what? No, because: `if`, the command `if`:
 
 ```
-$ if [ <condition> ]
+$ if [ -f "$FILE" ]
 > then
->     echo "YES"
->     echo "SUCCESS"
+>     cat $FILE
+>     wc -l $FILE
 > else
->     echo "NO"
->     echo "We failed"
+>     echo "$FILE does not exist"
 > fi
+ does not exist
+$ FILE=pizza.cfg
+$ if [ -f "$FILE" ]; then cat $FILE; wc -l $FILE; else echo "$FILE does not exist"; fi
 ```
+
+The `else` part is optional.
