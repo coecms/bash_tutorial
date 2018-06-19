@@ -180,3 +180,69 @@ ATOM      6  C           1       1.892  -0.400   0.001  1.00  0.00
 ATOM      7  C           1       3.113   0.429   0.414  1.00  0.00
 ATOM      8  C           1       4.397  -0.374   0.199  1.00  0.00
 ```
+
+So what if we have an unknown number of arguments?
+
+Say our script wants to list the length (in lines) of all files in the arguments sorted?
+
+Without a script, we'd do something like this:
+
+```
+$ wc -l *.pdb | sort -n
+```
+
+All arguments are stored in the variable `$@`:
+
+```
+$ nano sorted.sh
+
+wc -l "$@" | sort -n
+
+$ bash sorted.sh *.pdb ../creatures/*.dat
+```
+
+## Comments
+
+When scripts become large, it can be hard to keep the overview.
+For this reason, practically **all** languages incorporate comments.
+Text that is meant only for the programmers, never to be executed itself.
+
+`bash`, and most scripted languages, use the octothorpe, better known as the pound sign, or more recently the hashtag:
+`#`
+
+Unless the `#` is inside a string, `bash` will ignore it everything in the line behind it.
+
+```
+$ ls methane.pdb ethane.pdb # octane.pdb
+methane.pdb ethane.pdb
+```
+
+We can use this to write some information about our script into the text itself:
+
+```
+$ nano sorted.sh
+
+# Sort filenames by their length.
+# Usage: bash sorted.sh <FILES>
+wc -l "$@" | sort -n
+```
+
+
+
+## Solutions
+
+
+### Exercise:
+
+Use two more arguments to make the caller enter the **last** line to be output as argument 2, and the **number** of lines to be output as argument 3:
+
+```
+$ bash middle.sh octane 10 3
+ATOM      6  C           1       1.892  -0.400   0.001  1.00  0.00
+ATOM      7  C           1       3.113   0.429   0.414  1.00  0.00
+ATOM      8  C           1       4.397  -0.374   0.199  1.00  0.00
+```
+
+```
+head -n "$2" "$1" | tail -n "$3"
+```
