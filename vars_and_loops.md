@@ -542,7 +542,7 @@ $ echo "Exit code of ls was $EC"
 
 ## Loop over file contents
 
-A very common `while` loop is over `read`ing a file.
+A very common `while` loop is to `read` over a file.
 
 ```
 $ cat names.txt
