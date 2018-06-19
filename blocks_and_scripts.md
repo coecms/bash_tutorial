@@ -278,9 +278,11 @@ Therefore we have to give its path, absolute or relative. (Relative is easier in
 
 What do these special variables contain in a script:
 
-|~var |~ content |
-| `$0` |   |
-| `$#` |   |
+| var |  content |
+|-----|----|
+| `$0` | ?  |
+| `$#` | ?  |
+|   |   |
 
 ## Solutions
 
@@ -304,6 +306,15 @@ head -n "$2" "$1" | tail -n "$3"
 
 What do these special variables contain in a script:
 
-|~var |~ content |
+| var | content |
+|---|---|
 | `$0` | The name of the script  |
 | `$#` | The number of arguments  |
+
+
+## Thanks
+
+I have to thank the people behind Software Carpentry for their work.
+It would have been impossible to throw this course together so quickly without them.
+
+Please have a look at https://software-carpentry.org/ for more information.
