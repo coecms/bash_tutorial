@@ -116,3 +116,63 @@ $ if [ -f "$FILE" ]; then cat $FILE; wc -l $FILE; else echo "$FILE does not exis
 ```
 
 The `else` part is optional.
+
+## Scripts
+
+This last command was already a lot of typing.
+If I need to perform several operations in a specific order, and have to retype everything again, well ...
+Did I say that programmers are lazy?
+
+This is where scripts come in.
+
+Let's go into the `molecules` subdirectory:
+
+```
+$ cd ~/Desktop/data-shell/molecules
+$ ls
+```
+
+We already have `head` and `tail`, but what if we want to grab something from the middle?
+Let's create a script called `middle.sh`.
+We use the extension `.sh` to hint that this is a shell script:
+
+```
+$ nano middle.sh
+
+head -n 15 octane.pdb | tail -n 5
+```
+
+The first command returns only the first 15 lines of the file, which is then piped into `tail` which selects the last 5 of these.
+This leaves lines 11-15 of the file.
+
+We can now execute the file:
+
+```
+$ bash middle.sh
+```
+
+But if we want the contents of a different file, we'd have to change the script.
+
+So what we do instead is to fall back on the arguments:
+
+```
+$ nano middle.sh
+
+head -n 15 "$1" | tail -n 5
+```
+`$1` refers to the first argument supplied to the script.
+We put this in quotation marks for a similar reason as before.
+
+Now we can give the script the file name from which we want the middle:
+
+```
+$ bash middle.sh octane.pdb
+$ bash middle.sh pentane.pdb
+```
+
+### Exercise:
+
+Use two more arguments to make the caller enter the **last** line to be output as argument 2, and the **number** of lines to be output as argument 3:
+
+```
+$ bash middle.sh octane 10 3
