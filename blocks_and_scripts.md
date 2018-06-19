@@ -227,7 +227,60 @@ $ nano sorted.sh
 wc -l "$@" | sort -n
 ```
 
+## Making scripts executable
 
+We still need to call `bash <script name>` -- how do we get rid of the need to type out `bash`?
+
+2 Things:
+
+First, we need to write into the script which interpreter should be used to interpret this script.
+For this, we use what's called a *sha-bang*:
+
+```
+$ nano sorted.sh
+
+#!/bin/bash
+# Sort filenames by their length
+# Usage: sorted.sh <FILES>
+wc -l "$@" | sort -n
+```
+
+The sha-bang has to have exactly this form: It must be at the very beginning of the first line.
+It must be a pound sign, followed by an exclamation mark, followed by the full path the the interpreter binary.
+
+If you don't know where the binary is, use the `which` command:
+
+```
+$ which bash
+/bin/bash
+```
+
+`bash` is practically always in this location
+
+The second thing is to tell the operating system that this is an executable file.
+We do this with the command:
+
+```
+$ chmod +x sorted.sh
+```
+
+Now we can run
+
+```
+$ ./sorted.sh *.pdb
+```
+
+Note the `./` before the script.
+By default, the shell will not look in the local directory for the program to execute.
+Therefore we have to give its path, absolute or relative. (Relative is easier in this case.)
+
+### Exercise:
+
+What do these special variables contain in a script:
+
+|~var |~ content |
+| `$0` |   |
+| `$#` |   |
 
 ## Solutions
 
@@ -246,3 +299,11 @@ ATOM      8  C           1       4.397  -0.374   0.199  1.00  0.00
 ```
 head -n "$2" "$1" | tail -n "$3"
 ```
+
+### Exercise:
+
+What do these special variables contain in a script:
+
+|~var |~ content |
+| `$0` | The name of the script  |
+| `$#` | The number of arguments  |
