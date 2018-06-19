@@ -176,3 +176,7 @@ Use two more arguments to make the caller enter the **last** line to be output a
 
 ```
 $ bash middle.sh octane 10 3
+ATOM      6  C           1       1.892  -0.400   0.001  1.00  0.00
+ATOM      7  C           1       3.113   0.429   0.414  1.00  0.00
+ATOM      8  C           1       4.397  -0.374   0.199  1.00  0.00
+```
