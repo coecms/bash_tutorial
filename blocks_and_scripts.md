@@ -282,7 +282,6 @@ What do these special variables contain in a script:
 |-----|----|
 | `$0` | ?  |
 | `$#` | ?  |
-|   |   |
 
 ## Solutions
 
