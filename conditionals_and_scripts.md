@@ -1,4 +1,4 @@
-# Blocks and Scripts
+# Conditionals and Scripts
 
 At the end of last week, we looked at exit codes, the integer that a program returns to the calling shell.
 
