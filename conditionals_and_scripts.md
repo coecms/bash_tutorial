@@ -116,7 +116,7 @@ $ FILE=pizza.cfg
 $ if [ -e "$FILE" ]; then cat $FILE; wc -l $FILE; else echo "$FILE does not exist"; fi
 ```
 
-The `else` part is optional.
+The `else` part is optional. `fi` is just `if` backwards, and it is required.
 
 ## Scripts
 
