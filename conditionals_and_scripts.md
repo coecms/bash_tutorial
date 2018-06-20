@@ -284,6 +284,40 @@ What do these special variables contain in a script:
 | `$0` | ?  |
 | `$#` | ?  |
 
+
+So to put a bit of what we did over the course into a single script, let's modify the `middle.sh`.
+First, having to give the *last* line to be output is not very convenient.
+Make the user supply the *first* line to be output.
+Also, add some help if the script is not called correctly.
+
+```bash
+#!/bin/bash
+# Prints the middle section of a file (1st argument)
+# Usage: middle.sh <FILE> <START> <LENGTH>
+
+if [ "$#" -ne 3 ]; then
+    echo "
+    Usage:
+
+       $0 <FILE> <START> <LENGTH>
+
+    Prints a middle section of FILE, starting at line START
+    and for a total of LENGTH lines."
+    exit 1
+fi
+
+if [ ! -f "$1" ]; then
+    echo "File $1 does not exist or is no file."
+    exit 2
+fi
+
+FILE=$1
+declare -i END=$2+$3-1
+declare -i LEN=$3
+
+head -n $END $FILE | tail -n $LEN
+```
+
 ## Solutions
 
 
