@@ -92,7 +92,7 @@ Yummy!
 
 This is not expected. `FILE` isn't set, so why does it suggest a file with no name exists?
 
-Because `FILE` isn't set, this reverts to `[ -f ]` which in this case returns exit code 0.
+Because `FILE` isn't set, this reverts to `[ -f ]` which tests whether `-f` is a string with at least one character, which it is.
 
 To protect against that, it's good practise to put variables in double-quotes:
 
