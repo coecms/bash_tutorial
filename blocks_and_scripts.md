@@ -54,7 +54,7 @@ Let's combine this with last week's variables and loops:
 ```
 $ for FOOD in pizza meatpie
 > do
->     test -f ${FOOD}.cfg && echo "Yummy! ${FOOD}" || echo "Sorry, no ${FOOD} today"
+>     test -e ${FOOD}.cfg && echo "Yummy! ${FOOD}" || echo "Sorry, no ${FOOD} today"
 > done
 Yummy! pizza
 Sorry, no meatpie today
@@ -71,10 +71,10 @@ We can use this syntax as well:
 
 ```
 $ FOOD=pizza
-$ [ -f ${FOOD}.cfg ] && echo "Yummy! ${FOOD}!" || echo "Sorry, no ${FOOD} today"
+$ [ -e ${FOOD}.cfg ] && echo "Yummy! ${FOOD}!" || echo "Sorry, no ${FOOD} today"
 Yummy! pizza!
 $ FOOD=meatpie
-$ [ -f ${FOOD}.cfg ] && echo "Yummy! ${FOOD}!" || echo "Sorry, no ${FOOD} today"
+$ [ -e ${FOOD}.cfg ] && echo "Yummy! ${FOOD}!" || echo "Sorry, no ${FOOD} today"
 Sorry, no meatpie today.
 ```
 
@@ -83,27 +83,27 @@ Say you have this:
 
 ```
 $ FILE=pizza.cfg
-$ [ -f $FILE ] && echo "Yummy!"
+$ [ -e $FILE ] && echo "Yummy!"
 Yummy!
 $ unset FILE
-$ [ -f $FILE ] && echo "Yummy!"
+$ [ -e $FILE ] && echo "Yummy!"
 Yummy!
 ```
 
 This is not expected. `FILE` isn't set, so why does it suggest a file with no name exists?
 
-Because `FILE` isn't set, this reverts to `[ -f ]` which tests whether `-f` is a string with at least one character, which it is.
+Because `FILE` isn't set, this reverts to `[ -e ]` which tests whether `-e` is a string with at least one character, which it is.
 
 To protect against that, it's good practise to put variables in double-quotes:
 
 ```
-$ [ -f "$FILE" ] && echo "Yummy!"
+$ [ -e "$FILE" ] && echo "Yummy!"
 ```
 
 But why the whole thing with square brackets? Because if. If what? No, because: `if`, the command `if`:
 
 ```
-$ if [ -f "$FILE" ]
+$ if [ -e "$FILE" ]
 > then
 >     cat $FILE
 >     wc -l $FILE
@@ -112,7 +112,7 @@ $ if [ -f "$FILE" ]
 > fi
  does not exist
 $ FILE=pizza.cfg
-$ if [ -f "$FILE" ]; then cat $FILE; wc -l $FILE; else echo "$FILE does not exist"; fi
+$ if [ -e "$FILE" ]; then cat $FILE; wc -l $FILE; else echo "$FILE does not exist"; fi
 ```
 
 The `else` part is optional.
