@@ -101,7 +101,7 @@ $ [ -e "$FILE" ] && echo "Yummy!"
 ```
 
 But why the whole thing with square brackets? Because by far the most common usage is either in a `while` or `until` loop, or an `if` statement.
-And `if [ EXPRESSION ]` is easier to read `if test EXPRESSION`:
+And `if [ EXPRESSION ]` is easier to read than `if test EXPRESSION`:
 
 ```
 $ if [ -e "$FILE" ]
