@@ -318,6 +318,10 @@ declare -i LEN=$3
 head -n $END $FILE | tail -n $LEN
 ```
 
+**Note:** This is an example for how to write a multi-line script. 
+This is not meant as the best or even a reasonable solution for this particular issue.
+
+
 ## Solutions
 
 
